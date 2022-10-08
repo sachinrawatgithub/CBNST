@@ -1,0 +1,47 @@
+The Bisection method is I order convergent, or linearly convergent
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+double f(double x)
+{
+    return (x*log10(x)-1.2);
+}
+
+int main()
+{
+    double x0,x1,x,e;
+    printf("enter x0,x1 : ");
+    scanf("%lf%lf",&x0,&x1);
+    
+    if(f(x0)*f(x1) < 0)
+    {
+        printf("enter allowed error: ");
+        scanf("%lf",&e);
+        
+        do{
+            x=(x0+x1)/2; 
+            if(f(x)*f(x1)<0)
+              x0=x;
+            else if(f(x0)*f(x1)<0)
+              x1=x;
+              
+            printf("x: %lf , f(%lf): %lf\n",x,x,f(x));  
+        }while(fabs(f(x)>e));
+    }
+    else
+    {
+        printf("Wrong X0 and X1\n");
+    }
+    
+return 0;    
+}
+
+------------------------OUTPUT----------------------------
+enter x0,x1 : 2.74 2.75
+enter allowed error: 0.00001 
+x: 2.745000 , f(2.745000): 0.003799
+x: 2.742500 , f(2.742500): 0.001617
+x: 2.741250 , f(2.741250): 0.000527
+x: 2.740625 , f(2.740625): -0.000018
