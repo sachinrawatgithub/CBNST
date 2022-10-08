@@ -1,0 +1,82 @@
+------This method is quite similar to that of the Regula-Falsi method except for thecondition f(x1) . f(x2) < 0.
+Here the graph of the function y = f(x) in the
+neighborhood of the root is approximated by a secant line or chords. 
+-----Further, the interval at each iteration may not contain the root.
+
+If at any stage f(xn) = f(xn–1), this method will fail.
+Hence this method does not always converge while the Regula-Falsi method
+will always converge. The only advantage in this method lies in the fact that if
+it converges, it will converge more rapidly than the Regula-Falsi method.
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+double f(double x)
+{
+    return (x*x*exp(-x/2) - 1);
+}
+
+
+int main()
+{
+    double x0,x1,x,e;
+    printf("enter x0,x1 : ");
+    scanf("%lf%lf",&x0,&x1);
+    
+    
+    //if( f(x0)*f(x1) < 0)
+    //{
+        printf("enter allowed error: ");
+        scanf("%lf",&e);
+        
+        x = (x0+x1)/2;
+        printf("x: %lf , f(%lf): %lf\n",x,x,f(x));  
+        
+        while( fabs(f(x)) > e )
+        {
+            
+                //int a,b; // so that a,b will pick only the first 2 digits 
+                //a=x1*100;      // 2 zeros if 4 decimal places then we would have *10000 and so on 
+                //b=x*100; // 2 zeros if 4 decimal places then we would have *10000 and so on 
+                
+                //if(a==b)
+                //{
+                //   printf("LAST 2 DECIMAL x: %lf , f(%lf): %lf\n",x,x,f(x));
+                //    exit(0); 
+                //}
+            
+            if( f(x1)==f(x0) )
+            {
+                printf("Can't divide with zero");
+                exit(0);
+            }
+            
+            x = x1 - ( (x1-x0) / (f(x1)-f(x0)) )*( f(x1) );
+            printf("x: %lf , f(%lf): %lf\n",x,x,f(x));  
+            x0=x1;
+            x1=x;
+        }
+    //}
+    //else
+    //{
+    //    printf("Wrong X0 and X1\n");
+    //    exit(0);
+    //}
+    
+    printf("x: %lf , f(%lf): %lf\n",x,x,f(x)); 
+return 0;    
+}
+
+
+------------------------OUTPUT------------------------------
+enter x0,x1 : 0 2
+enter allowed error: 0.00001
+
+x: 1.000000 , f(1.000000): -0.393469
+x: 1.359141 , f(1.359141): -0.063743
+x: 1.435459 , f(1.435459): 0.005254
+x: 1.429648 , f(1.429648): 0.000032
+x: 1.429612 , f(1.429612): -0.000000
+x: 1.429612 , f(1.429612): -0.000000
