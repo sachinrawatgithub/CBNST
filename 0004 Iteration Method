@@ -37,6 +37,18 @@ int main()
             printf("x: %lf , f(%lf): %lf\n",x,x,f(x));  
             while( fabs(f(x)) > e )
             {
+                /* If Question says that Find a real root of the equation ..... correct to 3 decimal places using iteration method.
+                int a,b; // so that a,b will pick only the first 3 digits 
+                a=x*1000;      // 3 zeros if 4 decimal places then we would have *10000 and so on 
+                b=fie(x)*1000; // 3 zeros if 4 decimal places then we would have *10000 and so on 
+                
+                if(a==b)
+                {
+                    printf("LAST 3 DECIMAL x: %lf , f(%lf): %lf\n",x,x,f(x)); // LAST 3 DECIMAL x: 0.567277 , f(0.567277): 0.000370
+                    exit(0); // because after this x first 3 decimal digit will repeat 0.567.....
+                }
+                */
+            
                 x = fie(x);
                 printf("x: %lf , f(%lf): %lf\n",x,x,f(x));  
             }
