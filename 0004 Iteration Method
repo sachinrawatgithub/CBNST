@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+double f(double x)// function given to us
+{
+    return (x*exp(x)-1);
+}
+
+
+double fie(double x)// fie function is choosen such, amoung all fie which satisfy condition |fie'(x)| < 1    and   have minimum value for x0 
+                   //                                                                                              amoung those who satisfy condition 
+// For more understanding watch https://youtu.be/vz8bupTd-dE
+{
+    return (exp(-x));
+}
+
+double diff_fie(double x)// diffrentiation of choosen fie function 
+{
+    return (-exp(-x));
+}
+
+int main()
+{
+    double x0,x1,x,e;
+    printf("enter x0,x1 : ");
+    scanf("%lf%lf",&x0,&x1);
+    
+    if(f(x0)*f(x1) < 0)
+    {
+        printf("enter allowed error: ");
+        scanf("%lf",&e);
+        
+        x=(x0+x1)/2;
+        if( fabs(diff_fie(x)) < 1)
+        {
+            printf("x: %lf , f(%lf): %lf\n",x,x,f(x));  
+            while( fabs(f(x)) > e )
+            {
+                x = fie(x);
+                printf("x: %lf , f(%lf): %lf\n",x,x,f(x));  
+            }
+        }
+    }
+    else
+    {
+        printf("Wrong X0 and X1\n");
+    }
+    
+    printf("x: %lf , f(%lf): %lf\n",x,x,f(x)); 
+return 0;    
+}
+
+----------------OUTPUT-------------------
+enter x0,x1 : 0 1
+enter allowed error: 0.00001
+
+x: 0.500000 , f(0.500000): -0.175639
+x: 0.606531 , f(0.606531): 0.112412
+x: 0.545239 , f(0.545239): -0.059451
+x: 0.579703 , f(0.579703): 0.035065
+x: 0.560065 , f(0.560065): -0.019447
+x: 0.571172 , f(0.571172): 0.011169
+x: 0.564863 , f(0.564863): -0.006289
+x: 0.568438 , f(0.568438): 0.003581
+x: 0.566409 , f(0.566409): -0.002027
+x: 0.567560 , f(0.567560): 0.001151
+x: 0.566907 , f(0.566907): -0.000652
+x: 0.567277 , f(0.567277): 0.000370
+x: 0.567067 , f(0.567067): -0.000210
+x: 0.567186 , f(0.567186): 0.000119
+x: 0.567119 , f(0.567119): -0.000067
+x: 0.567157 , f(0.567157): 0.000038
+x: 0.567135 , f(0.567135): -0.000022
+x: 0.567148 , f(0.567148): 0.000012
+x: 0.567141 , f(0.567141): -0.000007
+x: 0.567141 , f(0.567141): -0.000007
+
+
+
+
+
+
