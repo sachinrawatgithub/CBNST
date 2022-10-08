@@ -1,0 +1,81 @@
+This method is useful in cases of large values of f ′(x), i.e., when the
+graph of f(x) while crossing the x-axis is nearly vertical.
+2. If f ′(x) is zero or nearly 0, the method fails.
+3. Newton’s formula converges provided the initial approximation x0 is
+chosen sufficiently close to the root.
+In the beginning, we guess two numbers b and c such that f(b) and f(c)
+are of opposite signs. Then the first approximate root a lies between b
+and c.
+4. This method is also used to obtain complex roots
+
+Hence by definition, the order of convergence of Newton-Raphson method
+is 2, i.e., Newton-Raphson method is quadratic convergent
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+double f(double x)
+{
+    return (x*sin(x) + cos(x));
+}
+
+double diff_f(double x)
+{
+    return (x*cos(x));
+}
+
+int main()
+{
+    double x0,x1,x,e;
+    printf("enter x0,x1 : ");
+    scanf("%lf%lf",&x0,&x1);
+    
+    
+    if( f(x0)*f(x1) < 0)
+    {
+        printf("enter allowed error: ");
+        scanf("%lf",&e);
+        
+        x = (x0+x1)/2;
+        printf("x: %lf , f(%lf): %lf\n",x,x,f(x));  
+        
+        while( fabs(f(x)) > e )
+        {       /* If Question says that Find a real root of the equation ..... correct to 3 decimal places using Newton Raphson method. 
+                // int a,b; // so that a,b will pick only the first 3 digits 
+                // a=x*1000;      // 3 zeros if 4 decimal places then we would have *10000 and so on 
+                // b=(x - f(x)/diff_f(x))*1000; // 3 zeros if 4 decimal places then we would have *10000 and so on 
+                
+                // if(a==b)
+                // {
+                //     printf("LAST 3 DECIMAL x: %lf , f(%lf): %lf\n",x,x,f(x)); // LAST 3 DECIMAL x: 0.567277 , f(0.567277): 0.000370
+                //     exit(0); // because after this x first 3 decimal digit will repeat 0.567.....
+                // }
+                
+            x = x - f(x)/diff_f(x);
+            printf("x: %lf , f(%lf): %lf\n",x,x,f(x));  
+        }
+    }
+    else
+    {
+        printf("Wrong X0 and X1\n");
+        exit(0);
+    }
+    
+    printf("x: %lf , f(%lf): %lf\n",x,x,f(x)); 
+return 0;    
+}
+
+------------------------- OUTPUT ---------------------------------
+enter x0,x1 : 2 3
+enter allowed error: 0.00001
+
+x: 2.500000 , f(2.500000): 0.695037
+x: 2.847022 , f(2.847022): -0.130355
+x: 2.799175 , f(2.799175): -0.002080
+x: 2.798386 , f(2.798386): -0.000001
+x: 2.798386 , f(2.798386): -0.000001
+
+
+
+
