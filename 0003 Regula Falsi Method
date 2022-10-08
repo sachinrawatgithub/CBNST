@@ -1,0 +1,50 @@
+--METHOD OF FALSE POSITION Or REGULA-FALSI METHOD
+The bisection method guarantees that the iterative process will converge. It is,
+however, slow. Thus, attempts have been made to speed up** the bisection
+method retaining its guaranteed convergence. A method of doing this is called
+the method of false position.
+It is sometimes known as the method of linear interpolation.
+
+--The order of convergence of the Regula Falsi method is 1.618
+
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+double f(double x)
+{
+    return (3*x + sin(x) - exp(x));
+}
+
+int main()
+{
+    double x0,x1,x,e;
+    printf("enter x0,x1 : ");
+    scanf("%lf%lf",&x0,&x1);
+    
+    if(f(x0)*f(x1) < 0)
+    {
+        printf("enter allowed error: ");
+        scanf("%lf",&e);
+        
+        do{
+            x = x0 - ( (x1-x0)/( f(x1)-f(x0) )) * f(x0);
+            
+            if(f(x)*f(x1)<0)
+              x0=x;
+            else if(f(x0)*f(x1)<0)
+              x1=x;
+              
+            printf("x: %lf , f(%lf): %lf\n",x,x,f(x));  
+        }while(fabs(f(x)>e));
+    }
+    else
+    {
+        printf("Wrong X0 and X1\n");
+    }
+    
+return 0;    
+}
