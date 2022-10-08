@@ -48,8 +48,8 @@ int main()
                 
                 // if(a==b)
                 // {
-                //     printf("LAST 3 DECIMAL x: %lf , f(%lf): %lf\n",x,x,f(x)); // LAST 3 DECIMAL x: 0.567277 , f(0.567277): 0.000370
-                //     exit(0); // because after this x first 3 decimal digit will repeat 0.567.....
+                //     printf("LAST 3 DECIMAL x: %lf , f(%lf): %lf\n",x,x,f(x)); 
+                //     exit(0); 
                 // }
              
             if(diff_f(x) == 0) 
